@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 //import './App.css'
 import axios from "axios";
 import {usePlaidLink} from "react-plaid-link";
+import Banner from './Banner';
 
 axios.defaults.baseURL = "http://localhost:8000"
 
@@ -28,6 +29,7 @@ function PlaidAuth({publicToken}){
     );
 }
 function App() {
+
     const [linkToken, setLinkToken] = useState();
     const [publicToken,setPublicToken] = useState();
 
@@ -47,10 +49,18 @@ function App() {
         },
     });
 
-    return publicToken ? (<PlaidAuth publicToken={publicToken} />) : (
-        <button onClick={() => open()} disabled={!ready}>
-            Connect a bank account
-        </button>
+    return (
+        <div style={{ position: 'relative' }}>
+            <PlaidAuth publicToken={publicToken} /> {/* Render PlaidAuth component first */}
+            <Banner /> {/* Render Banner component second */}
+            <button
+                onClick={() => open()}
+                disabled={!ready}
+                style={{ position: 'relative', zIndex: 1 }}
+            >
+                Connect a bank account
+            </button>
+        </div>
     );
 }
 
