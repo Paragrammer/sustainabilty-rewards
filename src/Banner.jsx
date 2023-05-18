@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 
 function Banner() {
     const bannerStyle = {
@@ -44,10 +46,10 @@ function Banner() {
                 <span>by Capital One</span>
             </div>
             <div style={menuItemsStyle}>
-                <span>Home</span>
-                <span>Rewards</span>
-                <span>Trusted Applications</span>
-                <span>Information</span>
+                        <Link to="/">Home</Link>
+                        <Link to="/Rewards">Rewards</Link>
+                        <Link to="/Apps">Trusted Applications</Link>
+                        <Link to="Info">Information</Link>
             </div>
         </div>
     );

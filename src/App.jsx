@@ -1,11 +1,10 @@
 import {useEffect, useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-//import './App.css'
+import './App.css'
 import axios from "axios";
 import {usePlaidLink} from "react-plaid-link";
 import Banner from './Banner';
-import Footer from './Footer';
+import Home from './Home';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 axios.defaults.baseURL = "http://localhost:8000"
 
@@ -29,7 +28,9 @@ function PlaidAuth({publicToken}){
         </>
     );
 }
-function App() {
+function App() 
+{
+    
 
     const [linkToken, setLinkToken] = useState();
     const [publicToken,setPublicToken] = useState();
@@ -53,15 +54,25 @@ function App() {
     return (
         <div style={{ position: 'relative' }}>
             <PlaidAuth publicToken={publicToken} /> {/* Render PlaidAuth component first */}
-            <Banner /> {/* Render Banner component second */}
+            <Router>
+                <Banner /> {/* Render Banner component second */}
+                    <Routes>
+                        <Route path="/" />
+                        <Route path="/Rewards"/>
+                        <Route path="/Apps" />
+                        <Route path="/Info" />
+                    </Routes>
+                </Router>
+            
+            <div id="rectangle1" />
+            <div id="rectangle2" />
             <button
                 onClick={() => open()}
                 disabled={!ready}
-                style={{ position: 'relative', zIndex: 1 }}
+                style={{ position: 'relative', zIndex: 1, color: 'white' }}
             >
-                Connect a bank account
+                Start Earning Rewards!
             </button>
-            <Footer />
         </div>
     );
 }
