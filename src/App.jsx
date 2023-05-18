@@ -5,6 +5,7 @@ import viteLogo from '/vite.svg'
 import axios from "axios";
 import {usePlaidLink} from "react-plaid-link";
 import Banner from './Banner';
+import Footer from './Footer';
 
 axios.defaults.baseURL = "http://localhost:8000"
 
@@ -60,6 +61,7 @@ function App() {
             >
                 Connect a bank account
             </button>
+            <Footer />
         </div>
     );
 }
